@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HomePage</title>
+</head>
+<body>
+<h1>Welcome to this page !</h1>
+<form action="">
+    <label>Enter email: </label>
+    <input type="email" name="email" />
+    <input type="submit" name="subscribe" value="Subscribe"  />
+</form>
+
+<a th:href="@{/start}">Subscribe</a>
+
+<h1 th:text="${code}"></h1>
+<h1 th:text="${open}"></h1>
+</body>
+</html>
