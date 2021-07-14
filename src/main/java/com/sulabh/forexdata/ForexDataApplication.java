@@ -1,6 +1,5 @@
 package com.sulabh.forexdata;
 
-import com.sulabh.forexdata.service.ApiFetchService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

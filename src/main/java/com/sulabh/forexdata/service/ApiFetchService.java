@@ -10,11 +10,9 @@ import java.util.Arrays;
 @Service
 public class ApiFetchService {
 
-    public final String API = "https://eodhistoricaldata.com/api/real-time/AUDUSD.FOREX?fmt=json&api_token=60dd2b06a55d03.18616562";
-
     RestTemplate restTemplate = new RestTemplate();
 
-    public ForexExchangeRate fetchDataFromApi() throws Exception {
+    public ForexExchangeRate fetchDataFromApi(String API) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -26,6 +24,4 @@ public class ApiFetchService {
         return result.getBody();
 
     }
-
-
 }
