@@ -13,7 +13,7 @@ public class CreateFileService {
 
     public void createFile(String fileContent){
 
-        File file = new File("b:\\forex\\sulabh3.csv");
+        File file = new File("G:\\data\\prajit.csv");
         //String AUSUSD = "\nAUSUSD".concat(",.7485");
 
         try {
