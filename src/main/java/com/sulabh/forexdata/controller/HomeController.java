@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.concurrent.ExecutionException;
 
@@ -23,12 +24,22 @@ public class HomeController {
     }
 
     @GetMapping("/start")
-    public String startSubscription(Model model){
+    public String startSubscription(@RequestParam("email")String email,
+            Model model){
+        System.out.println("Subscribed :" +email);
+
+        subscribeService.setToEmail(email);
+
         try {
             subscribeService.scheduleSendingUpdates();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        return "index";
+        return "redirect:/success";
+    }
+
+    @GetMapping("/success")
+    public String getSuccessPage(){
+        return "success";
     }
 }

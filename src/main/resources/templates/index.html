@@ -6,15 +6,12 @@
 </head>
 <body>
 <h1>Welcome to this page !</h1>
-<form action="">
+
+<form action="" th:action="@{/start}" method="get">
     <label>Enter email: </label>
     <input type="email" name="email" />
     <input type="submit" name="subscribe" value="Subscribe"  />
 </form>
 
-<a th:href="@{/start}">Subscribe</a>
-
-<h1 th:text="${code}"></h1>
-<h1 th:text="${open}"></h1>
 </body>
 </html>

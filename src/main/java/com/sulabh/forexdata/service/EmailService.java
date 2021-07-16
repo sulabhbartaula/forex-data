@@ -7,11 +7,14 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Properties;
 
 @Service
 public class EmailService {
+
+    String path = "b:\\forex\\";
 
     public void sendEmail(String toEmail, String fileName)
     {
@@ -46,10 +49,11 @@ public class EmailService {
             multipart.addBodyPart(messageBodyPart);
 
             MimeBodyPart attachPart = new MimeBodyPart();
-            attachPart.attachFile("B:\\forex\\"+ fileName );
+            attachPart.attachFile(path + fileName );
             multipart.addBodyPart(attachPart);
             msg.setContent(multipart);
             Transport.send(msg);
+            System.out.println("Email sent at : " + LocalDateTime.now() + "to" + toEmail);
         }
         catch (Exception exe)
         {
