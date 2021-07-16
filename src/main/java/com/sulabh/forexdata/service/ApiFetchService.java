@@ -19,7 +19,8 @@ public class ApiFetchService {
 
         HttpEntity<String> entity = new HttpEntity<>("parameters",headers);
 
-        ResponseEntity<ForexExchangeRate> result = restTemplate.exchange(API, HttpMethod.GET,entity, ForexExchangeRate.class);
+        ResponseEntity<ForexExchangeRate> result =
+                restTemplate.exchange(API, HttpMethod.GET,entity, ForexExchangeRate.class);
 
         return result.getBody();
 

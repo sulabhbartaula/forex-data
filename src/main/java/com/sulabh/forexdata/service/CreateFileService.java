@@ -9,12 +9,10 @@ import java.io.IOException;
 @Service
 public class CreateFileService {
 
-    String fileName = "myfile.csv";
 
-    public void createFile(String fileContent){
+    public void createFile(String fileContent, String fileName){
 
-        File file = new File("b:\\forex\\sulabh3.csv");
-        //String AUSUSD = "\nAUSUSD".concat(",.7485");
+        File file = new File("b:\\forex\\"+ fileName);
 
         try {
             if (file.createNewFile()){

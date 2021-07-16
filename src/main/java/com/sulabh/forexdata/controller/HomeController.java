@@ -1,35 +1,34 @@
 package com.sulabh.forexdata.controller;
 
+import com.sulabh.forexdata.model.Api;
+import com.sulabh.forexdata.model.CurrencyPair;
 import com.sulabh.forexdata.model.ForexExchangeRate;
 import com.sulabh.forexdata.service.ApiFetchService;
 import com.sulabh.forexdata.service.CreateFileService;
+import com.sulabh.forexdata.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 @RequestMapping("/")
 public class HomeController {
 
     String fileContent;
+    Api api;
+    String baseApi = "https://eodhistoricaldata.com/api/real-time/";
+    String token = "60dd2b06a55d03.18616562";
 
-    public final String API_AUDUSD =
-            "https://eodhistoricaldata.com/api/real-time/AUDUSD.FOREX?fmt=json&api_token=60dd2b06a55d03.18616562";
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd'_'HHmm");
 
-    public final String API_AUDNZD =
-            "https://eodhistoricaldata.com/api/real-time/AUDNZD.FOREX?fmt=json&api_token=60dd2b06a55d03.18616562";
-
-    public final String API_AUDHKD =
-            "https://eodhistoricaldata.com/api/real-time/AUDHKD.FOREX?fmt=json&api_token=60dd2b06a55d03.18616562";
-
-    public final String API_AUDKRW =
-            "https://eodhistoricaldata.com/api/real-time/AUDKRW.FOREX?fmt=json&api_token=60dd2b06a55d03.18616562";
-
-    public final String API_AUDJPY =
-            "https://eodhistoricaldata.com/api/real-time/AUDJPY.FOREX?fmt=json&api_token=60dd2b06a55d03.18616562";
+    // a filename of obsval_YYYYMMDD_HHMM.csv e.g. obsval_20191015_0800.csv
+    String fileName = "obsval_"+ LocalDateTime.now().format(formatter) + ".csv";
 
     @Autowired
     ApiFetchService apiFetchService;
@@ -37,33 +36,33 @@ public class HomeController {
     @Autowired
     CreateFileService createFileService;
 
+    @Autowired
+    CurrencyPair currencyPair;
+
+    @Autowired
+    EmailService emailService;
+
     @GetMapping("/")
     public String showHomePage(){
         return "index";
     }
 
     @GetMapping("/start")
+    @Scheduled(cron = "0 0 19,20 ?  * *")
     public String startSubscription(Model model) throws Exception {
-        ForexExchangeRate forexExchangeRate = apiFetchService.fetchDataFromApi(API_AUDUSD);
-        fileContent = "\n"+forexExchangeRate.getCode().substring(0,6).concat(",").concat(forexExchangeRate.getOpen());
 
-        ForexExchangeRate forexExchangeRateAudNzd = apiFetchService.fetchDataFromApi(API_AUDNZD);
-        fileContent = fileContent +
-                "\n"+forexExchangeRateAudNzd.getCode().substring(0,6).concat(",").concat(forexExchangeRateAudNzd.getOpen());
+        for(String cp : currencyPair.getCurrencyPair()){
+            api = new Api(baseApi,token,cp);
+            String localApi = api.generateFinalApi();
+            ForexExchangeRate forexExchangeRate = apiFetchService.fetchDataFromApi(localApi);
+            fileContent =
+                    fileContent + "\n"+ forexExchangeRate.getCode().substring(0,6).concat(",").concat(forexExchangeRate.getOpen());
+        }
 
-        ForexExchangeRate forexExchangeRateAudHkd = apiFetchService.fetchDataFromApi(API_AUDHKD);
-        fileContent = fileContent +
-                "\n"+forexExchangeRateAudHkd.getCode().substring(0,6).concat(",").concat(forexExchangeRateAudHkd.getOpen());
+        createFileService.createFile(fileContent,fileName);
 
-        ForexExchangeRate forexExchangeRateAudKrw = apiFetchService.fetchDataFromApi(API_AUDKRW);
-        fileContent = fileContent +
-                "\n"+forexExchangeRateAudKrw.getCode().substring(0,6).concat(",").concat(forexExchangeRateAudKrw.getOpen());
+        emailService.sendEmail("sulabhbartaula@gmail.com",fileName);
 
-        ForexExchangeRate forexExchangeRateAudJpy = apiFetchService.fetchDataFromApi(API_AUDJPY);
-        fileContent = fileContent +
-                "\n"+forexExchangeRateAudJpy.getCode().substring(0,6).concat(",").concat(forexExchangeRateAudJpy.getOpen());
-
-        createFileService.createFile(fileContent);
         return "index";
     }
 }
