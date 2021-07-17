@@ -1,6 +1,8 @@
 package com.sulabh.forexdata.controller;
 
 import com.sulabh.forexdata.service.SubscribeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,8 @@ import java.util.concurrent.ExecutionException;
 @RequestMapping("/")
 public class HomeController {
 
+    private final static Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+
     @Autowired
     SubscribeService subscribeService;
 
@@ -26,13 +30,15 @@ public class HomeController {
     @GetMapping("/start")
     public String startSubscription(@RequestParam("email")String email,
             Model model){
-        System.out.println("Subscribed :" +email);
+        LOGGER.info("Subscriber request received for email : ",email);
+        //System.out.println("Subscribed :" +email);
 
         subscribeService.setToEmail(email);
 
         try {
             subscribeService.scheduleSendingUpdates();
         } catch (ExecutionException e) {
+            LOGGER.error("Exception occured",e.getMessage());
             e.printStackTrace();
         }
         return "redirect:/success";

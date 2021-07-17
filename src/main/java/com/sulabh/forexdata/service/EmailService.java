@@ -1,5 +1,7 @@
 package com.sulabh.forexdata.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.mail.*;
@@ -13,6 +15,8 @@ import java.util.Properties;
 
 @Service
 public class EmailService {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
 
     String path = "b:\\forex\\";
 
@@ -53,11 +57,13 @@ public class EmailService {
             multipart.addBodyPart(attachPart);
             msg.setContent(multipart);
             Transport.send(msg);
-            System.out.println("Email sent at : " + LocalDateTime.now() + "to" + toEmail);
+            LOGGER.info("Email sent at : " + toEmail);
+            //System.out.println("Email sent at : " + LocalDateTime.now() + "to" + toEmail);
         }
-        catch (Exception exe)
+        catch (Exception e)
         {
-            exe.printStackTrace();
+            LOGGER.error("Exception Occurred",e.getMessage());
+            e.printStackTrace();
         }
     }
 }
