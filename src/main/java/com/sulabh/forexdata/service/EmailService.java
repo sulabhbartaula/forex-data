@@ -34,7 +34,7 @@ public class EmailService {
             {
                 protected PasswordAuthentication getPasswordAuthentication()
                 {
-                    return new PasswordAuthentication("naidoojaya1960@gmail.com", "@Sydney123");
+                    return new PasswordAuthentication("sendersEmail@gmail.com", "Senders Password");
                 }
             });
             Message msg = new MimeMessage(session);

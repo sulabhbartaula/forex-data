@@ -28,3 +28,36 @@
 2021-07-18 21:43:00.303  INFO 8084 --- [restartedMain] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
 2021-07-18 21:43:00.303  INFO 8084 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
 2021-07-18 21:43:00.313  INFO 8084 --- [restartedMain] c.sulabh.forexdata.ForexDataApplication  : Started ForexDataApplication in 1.326 seconds (JVM running for 1.819)
+2021-07-18 22:39:13.897  INFO 16024 --- [restartedMain] c.sulabh.forexdata.ForexDataApplication  : Starting ForexDataApplication using Java 14.0.1 on sb with PID 16024 (C:\git-project\forex-data\target\classes started by viper in C:\git-project\forex-data)
+2021-07-18 22:39:13.900  INFO 16024 --- [restartedMain] c.sulabh.forexdata.ForexDataApplication  : No active profile set, falling back to default profiles: default
+2021-07-18 22:39:13.931  INFO 16024 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-07-18 22:39:13.931  INFO 16024 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-07-18 22:39:14.791  INFO 16024 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-07-18 22:39:14.791  INFO 16024 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-07-18 22:39:14.791  INFO 16024 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-07-18 22:39:14.838  INFO 16024 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-07-18 22:39:14.838  INFO 16024 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 907 ms
+2021-07-18 22:39:15.028  INFO 16024 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-07-18 22:39:15.104  INFO 16024 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2021-07-18 22:39:15.110  INFO 16024 --- [restartedMain] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-07-18 22:39:15.110  INFO 16024 --- [restartedMain] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.2 created.
+2021-07-18 22:39:15.111  INFO 16024 --- [restartedMain] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2021-07-18 22:39:15.111  INFO 16024 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-07-18 22:39:15.111  INFO 16024 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-07-18 22:39:15.112  INFO 16024 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.2
+2021-07-18 22:39:15.112  INFO 16024 --- [restartedMain] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@14014651
+2021-07-18 22:39:15.135  INFO 16024 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-07-18 22:39:15.159  INFO 16024 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-07-18 22:39:15.160  INFO 16024 --- [restartedMain] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2021-07-18 22:39:15.161  INFO 16024 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-07-18 22:39:15.171  INFO 16024 --- [restartedMain] c.sulabh.forexdata.ForexDataApplication  : Started ForexDataApplication in 1.546 seconds (JVM running for 2.086)
+2021-07-18 22:39:20.374  INFO 16024 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-07-18 22:39:20.375  INFO 16024 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-07-18 22:39:20.375  INFO 16024 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
