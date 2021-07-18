@@ -36,7 +36,7 @@ public class SubscribeService {
     @Autowired
     EmailService emailService;
 
-    @Scheduled(cron = "0 40 20 ? * *", zone = "GMT+10")
+    @Scheduled(cron = "0 0 8,12,16 ? * *", zone = "GMT+10")
     public void scheduleSendingUpdates() throws ExecutionException {
 
         LOGGER.info("Method ran at : {} ",LocalDateTime.now());
