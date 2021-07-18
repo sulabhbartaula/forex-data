@@ -30,15 +30,14 @@ public class HomeController {
     @GetMapping("/start")
     public String startSubscription(@RequestParam("email")String email,
             Model model){
-        LOGGER.info("Subscriber request received for email : ",email);
-        //System.out.println("Subscribed :" +email);
+        LOGGER.info("Subscriber request received for email : {}",email);
 
         subscribeService.setToEmail(email);
 
         try {
             subscribeService.scheduleSendingUpdates();
         } catch (ExecutionException e) {
-            LOGGER.error("Exception occured",e.getMessage());
+            LOGGER.error("Exception occured : {}",e.getMessage());
             e.printStackTrace();
         }
         return "redirect:/success";

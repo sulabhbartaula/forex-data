@@ -14,8 +14,6 @@ public class ApiFetchService {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(ApiFetchService.class);
 
-    Logger logger = LoggerFactory.getLogger(ApiFetchService.class);
-
     RestTemplate restTemplate = new RestTemplate();
 
     public ForexExchangeRate fetchDataFromApi(String API) {
@@ -28,7 +26,7 @@ public class ApiFetchService {
         ResponseEntity<ForexExchangeRate> result =
                 restTemplate.exchange(API, HttpMethod.GET,entity, ForexExchangeRate.class);
 
-        logger.info("data extracted from api",result.getBody());
+        LOGGER.info("data extracted from api : {}",result.getBody().toString());
 
         return result.getBody();
 

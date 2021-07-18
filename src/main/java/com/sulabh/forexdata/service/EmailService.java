@@ -57,7 +57,7 @@ public class EmailService {
             multipart.addBodyPart(attachPart);
             msg.setContent(multipart);
             Transport.send(msg);
-            LOGGER.info("Email sent at : " + toEmail);
+            LOGGER.info("Email sent to : " + toEmail);
             //System.out.println("Email sent at : " + LocalDateTime.now() + "to" + toEmail);
         }
         catch (Exception e)

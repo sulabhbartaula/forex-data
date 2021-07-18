@@ -36,23 +36,23 @@ public class SubscribeService {
     @Autowired
     EmailService emailService;
 
-    @Scheduled(cron = "0 4,6 0 ? * *", zone = "GMT+10")
+    @Scheduled(cron = "0 40 20 ? * *", zone = "GMT+10")
     public void scheduleSendingUpdates() throws ExecutionException {
 
-        LOGGER.info("Method ran at : ",LocalDateTime.now());
+        LOGGER.info("Method ran at : {} ",LocalDateTime.now());
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd'_'HHmm");
         // a filename of obsval_YYYYMMDD_HHMM.csv e.g. obsval_20191015_0800.csv
         String fileName = "obsval_"+ LocalDateTime.now().format(formatter) + ".csv";
 
-        fileContent = null;
+        fileContent = "FOREX,VALUE";
 
         for(String cp : currencyPair.getCurrencyPair()){
-            LOGGER.info("Parsing each element of current pair list");
+            LOGGER.info("Parsing each element of current pair list : {}",cp);
             api = new Api(baseApi,token,cp);
             String localApi = api.generateFinalApi();
             ForexExchangeRate forexExchangeRate = apiFetchService.fetchDataFromApi(localApi);
-            LOGGER.info("Current data of extracted from api : ",forexExchangeRate.toString());
+            LOGGER.info("Current data of extracted from api : {} ",forexExchangeRate.toString());
             fileContent =
                     fileContent + System.lineSeparator() + forexExchangeRate.getCode().substring(0,6).concat(",").concat(forexExchangeRate.getOpen());
         }

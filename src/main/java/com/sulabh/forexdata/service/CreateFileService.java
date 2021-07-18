@@ -25,21 +25,19 @@ public class CreateFileService {
             try {
                 if (file.createNewFile()){
                     System.out.println("New File Created");
-                    LOGGER.info("New File Created ",fileName);
-                    //System.out.println("File created at : "+ LocalDateTime.now() + "for" + email);
+                    LOGGER.info("New File Created : {} ",file.getName());
                 }else{
                     LOGGER.error("Duplicate file exists. Not able to create file.");
-                    //System.out.println("Some problem");
                 }
 
                 //write to file
                 try (FileWriter writer = new FileWriter(file)){
-                    writer.write("FOREX,VALUE".trim());
-                    writer.append(fileContent);
-                    LOGGER.info("Content added to file ",fileContent);
+                    writer.write(fileContent);
+                    LOGGER.info("Content added to file : \n" +
+                            " {} ",fileContent);
                 }
             } catch (IOException e) {
-                LOGGER.error("Exception Occurred",e.getMessage());
+                LOGGER.error("Exception Occurred : {}",e.getMessage());
                 e.printStackTrace();
             }
         }
