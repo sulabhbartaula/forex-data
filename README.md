@@ -63,4 +63,12 @@ User Interface is kept simple at this stage to minimize complexity and focus mor
 4. Inside this method, API call will be made for each of the value in CurrencyPair listed.
 Each pair's currency code and opening value is taken into consideration for this project. All the values of different currency pair is now saved inside the csv file and sent to input email.
    ![img_7.png](img_7.png)
-   There are several values, but we are taking only one value of open for this project.
+   
+There are several values, but we are taking only one value of open for this project.
+
+5. Subscribe will receive email at given schedules.
+![img_8.png](img_8.png)
+
+## Author
+
+Sulabh Bartaula
